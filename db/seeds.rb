@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Product.delete_all
+
+Product.create!(title: 'Riani',
+  description:
+    %{<p>
+    <em>Webtoon</em>
+    Webtoon Seru
+    </p>},
+image_url: 'riani.jpg',
+price: 26.00)
