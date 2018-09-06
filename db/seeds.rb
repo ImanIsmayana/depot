@@ -16,3 +16,21 @@ Product.create!(title: 'Riani',
     </p>},
 image_url: 'riani.jpg',
 price: 26.00)
+
+Product.create!(title: 'Tiger',
+  description:
+    %{<p>
+    <em>Macan Rumahan</em>
+    Macan untuk menjaga rumah anda
+    </p>},
+image_url: 'tiger1.png',
+price: 26.00)
+
+Product.create!(title: 'Head Of Tiger',
+  description:
+    %{<p>
+    <em>Head</em>
+    Suatu Kepala untuk menjaga tubuh anda
+    </p>},
+image_url: 'tiger.png',
+price: 26.00)

@@ -7,20 +7,38 @@
     <%= stylesheet_link_tag 'application', media: 'all',
     'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script type="text/javascript">
+      I18n.defaultLocale = "<%= I18n.default_locale %>";
+      I18n.locale = "<%= I18n.locale %>";
+    </script>
   </head>
   <body class='<%= controller.controller_name %>'>
     <div id="banner">
+      <%= form_tag store_index_path, class: 'locale' do %>
+        <%= select_tag 'set_locale', options_for_select(LANGUAGES, I18n.locale.to_s),
+         onchange: 'this.form.submit()' %>
+        <%= submit_tag 'submit', id: "submit_locale_change" %>
+      <% end %>
       <%= image_tag 'tiger.png', alt: 'The Pragmatic Bookshelf' %>
       <span class="title"><%= @page_title %></span>
     </div>
     <div id="columns">
       <div id="side">
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><%= link_to "products", products_path %></li>
-          <li><%= link_to "carts", carts_path %></li>
-          <li><%= link_to "line_item", line_items_path %></li>
+          <li><a href="/"><%= t(".home") %></a></li>
+          <li><%= link_to t(".carts"), carts_path %></li>
+          <li><%= link_to t(".line_item"), line_items_path %></li>
         </ul>
+
+        <% if session[:user_id] %>
+          <ul>
+            <li><%= link_to t('.Orders'), orders_path %></li>
+            <li><%= link_to t('.Products'), products_path %></li>
+            <li><%= link_to t('.Users'), users_path %></li>
+          </ul>
+          <%= button_to 'Logout', logout_path, method: :delete %>
+          <% end %>
+
       </div>
       <div id="main">
           <%= yield %>
